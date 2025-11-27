@@ -52,15 +52,15 @@
 <table>
   <tr>
     <td>
-      <img src="path_to_your_images/home.png" width="250" alt="Home Screen">
+      <img src="WellnessHub/screenshots/home.png" width="250" alt="Home Screen">
       <br><strong>Home Screen</strong>
     </td>
     <td>
-      <img src="path_to_your_images/tracker.png" width="250" alt="Tracker Screen">
+      <img src="screenshots/tracker.png" width="250" alt="Tracker Screen">
       <br><strong>Tracker</strong>
     </td>
     <td>
-      <img src="path_to_your_images/profile.png" width="250" alt="Profile Screen">
+      <img src="screenshots/profile.png" width="250" alt="Profile Screen">
       <br><strong>Profile</strong>
     </td>
   </tr>
