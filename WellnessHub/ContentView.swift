@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
+        // Main TabView controlling navigation
         TabView {
             
             HomeView()
@@ -26,6 +27,6 @@ struct ContentView: View {
                     Label("Profile", systemImage: "person.crop.circle.fill")
                 }
         }
-        .accentColor(.teal)
+        .accentColor(.teal)  // Tab highlight color
     }
 }

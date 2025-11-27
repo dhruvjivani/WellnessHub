@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
 
-    // Hardcoded name & summary data
+    // Hardcoded demo data
     let name = "Dhruv"
     let stepsPercent = 75
     let waterPercent = 50
@@ -19,7 +19,7 @@ struct HomeView: View {
         ScrollView {
             VStack(spacing: 20) {
                 
-                // Greeting
+                // Greeting message
                 Text("Welcome, \(name)! 🌿")
                     .font(.largeTitle.bold())
                     .foregroundColor(.teal)
@@ -31,13 +31,13 @@ struct HomeView: View {
                     author: "– WellnessHub"
                 )
 
-                // Summary card
+                // Daily progress summary card
                 SummaryCard(
                     steps: stepsPercent,
                     water: waterPercent
                 )
 
-                // Background image
+                // Background wellness image
                 Image("nature_bg")
                     .resizable()
                     .scaledToFit()

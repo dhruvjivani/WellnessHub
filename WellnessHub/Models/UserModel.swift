@@ -7,9 +7,9 @@
 
 import Foundation
 
+// Simple user model representing basic profile data
 struct UserModel {
     var name: String
     var age: Int
     var favoriteActivity: String
 }
-

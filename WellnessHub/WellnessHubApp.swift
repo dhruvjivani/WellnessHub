@@ -11,6 +11,7 @@ import SwiftUI
 struct WellnessHubApp: App {
     var body: some Scene {
         WindowGroup {
+            // App starts at ContentView
             ContentView()
         }
     }

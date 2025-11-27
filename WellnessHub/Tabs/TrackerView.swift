@@ -9,17 +9,16 @@ import SwiftUI
 
 struct TrackerView: View {
 
-    // Form input states
+    // Input values for the form
     @State private var water: Double = 4
     @State private var sleep: Int = 7
     @State private var mood: String = "😊"
     @State private var exercised: Bool = false
 
-    // Alert state
+    // Alert for submission
     @State private var showAlert = false
-    @State private var errorMessage = ""
 
-    // Mood options
+    // Mood options displayed in picker
     let moods = ["😐", "😊", "😁", "😢", "😡"]
 
     var body: some View {
@@ -27,20 +26,20 @@ struct TrackerView: View {
         NavigationView {
             Form {
 
-                // Water Slider
+                // Water intake slider
                 Section(header: Text("Water Intake (cups)")) {
                     Slider(value: $water, in: 0...20, step: 1)
                     Text("\(Int(water)) cups")
                 }
 
-                // Sleep Stepper
+                // Sleep hours stepper
                 Section(header: Text("Sleep Hours")) {
                     Stepper(value: $sleep, in: 0...12) {
                         Text("\(sleep) hours")
                     }
                 }
 
-                // Mood Picker
+                // Mood picker using emojis
                 Section(header: Text("Mood")) {
                     Picker("Mood", selection: $mood) {
                         ForEach(moods, id: \.self) { value in
@@ -49,7 +48,7 @@ struct TrackerView: View {
                     }
                 }
 
-                // Exercise Toggle
+                // Exercise toggle
                 Section {
                     Toggle("Did you exercise today?", isOn: $exercised)
                 }
@@ -74,17 +73,11 @@ struct TrackerView: View {
         }
     }
 
-    // Submission logic with validation + reset
+    // Handles form submission and resets fields
     func handleSubmit() {
-        if sleep < 0 || sleep > 12 {
-            errorMessage = "Sleep must be between 0–12 hours."
-            return
-        }
-
-        // Show success
         showAlert = true
-
-        // Reset fields
+        
+        // Reset input values
         water = 0
         sleep = 0
         mood = "😊"

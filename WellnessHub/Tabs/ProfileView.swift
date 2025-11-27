@@ -9,8 +9,10 @@ import SwiftUI
 
 struct ProfileView: View {
     
+    // Toggles edit mode on/off
     @State private var isEditing = false
     
+    // User profile values
     @State private var name = "Dhruv"
     @State private var age = "20"
     @State private var favoriteActivity = "Yoga"
@@ -22,7 +24,7 @@ struct ProfileView: View {
                 
                 VStack(spacing: 30) {
                     
-                    // MARK: - Top Gradient Header with Profile
+                    // Top header with gradient + profile photo
                     ZStack {
                         LinearGradient(
                             colors: [.teal.opacity(0.9), .blue.opacity(0.8)],
@@ -31,9 +33,10 @@ struct ProfileView: View {
                         )
                         .frame(height: 240)
                         .cornerRadius(30)
-                        .shadow(color: .black.opacity(0.15), radius: 10, x: 0, y: 5)
+                        .shadow(color: .black.opacity(0.15), radius: 10)
                         .padding(.horizontal)
                         
+                        // Profile image + name
                         VStack(spacing: 14) {
                             Image("profile_pic")
                                 .resizable()
@@ -53,42 +56,22 @@ struct ProfileView: View {
                     .padding(.top, 10)
                     
                     
-                    // MARK: - Information Card
+                    // Information card with editable fields
                     VStack(spacing: 22) {
                         
-                        // Name
-                        profileField(
-                            icon: "person.fill",
-                            title: "Name",
-                            value: $name,
-                            isEditing: isEditing
-                        )
-                        
-                        // Age
-                        profileField(
-                            icon: "clock.fill",
-                            title: "Age",
-                            value: $age,
-                            isEditing: isEditing
-                        )
-                        
-                        // Favorite Activity
-                        profileField(
-                            icon: "heart.fill",
-                            title: "Favorite Activity",
-                            value: $favoriteActivity,
-                            isEditing: isEditing
-                        )
+                        profileField(icon: "person.fill", title: "Name", value: $name, isEditing: isEditing)
+                        profileField(icon: "clock.fill", title: "Age", value: $age, isEditing: isEditing)
+                        profileField(icon: "heart.fill", title: "Favorite Activity", value: $favoriteActivity, isEditing: isEditing)
                         
                     }
                     .padding(22)
                     .background(.ultraThinMaterial)
                     .cornerRadius(25)
-                    .shadow(color: .black.opacity(0.08), radius: 10, x: 0, y: 5)
+                    .shadow(color: .black.opacity(0.08), radius: 10)
                     .padding(.horizontal)
                     
                     
-                    // MARK: - Edit Button
+                    // Button to switch between edit/save
                     Button(action: {
                         withAnimation(.easeInOut(duration: 0.25)) {
                             isEditing.toggle()
@@ -119,13 +102,13 @@ struct ProfileView: View {
         }
     }
     
-    
-    // MARK: - Reusable Field Component
+    // Reusable field component for Name/Age/Activity
     @ViewBuilder
     func profileField(icon: String, title: String, value: Binding<String>, isEditing: Bool) -> some View {
         
         VStack(alignment: .leading, spacing: 6) {
             
+            // Icon + Section Title
             HStack(spacing: 12) {
                 Image(systemName: icon)
                     .font(.title3)
@@ -133,26 +116,23 @@ struct ProfileView: View {
                 
                 Text(title)
                     .font(.headline)
-                    .foregroundColor(.primary)
             }
             
+            // Edit vs Display mode
             if isEditing {
                 TextField("Enter \(title.lowercased())", text: value)
                     .padding(12)
                     .background(Color.white.opacity(0.9))
                     .cornerRadius(12)
-                    .shadow(color: .black.opacity(0.07), radius: 3, x: 0, y: 2)
             } else {
                 Text(value.wrappedValue)
                     .font(.title3)
-                    .foregroundColor(.primary.opacity(0.9))
-                    .padding(.vertical, 4)
                     .padding(.leading, 4)
             }
         }
         .padding()
         .background(Color.white.opacity(0.75))
         .cornerRadius(18)
-        .shadow(color: .black.opacity(0.05), radius: 4, x: 0, y: 3)
+        .shadow(color: .black.opacity(0.05), radius: 4)
     }
 }
