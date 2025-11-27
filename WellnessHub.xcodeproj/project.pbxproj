@@ -6,8 +6,13 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		51C1436A2ED7D589002142E6 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 51C143692ED7D57E002142E6 /* README.md */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		51C143432ED7CE53002142E6 /* WellnessHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WellnessHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		51C143692ED7D57E002142E6 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -32,6 +37,7 @@
 		51C1433A2ED7CE53002142E6 = {
 			isa = PBXGroup;
 			children = (
+				51C143692ED7D57E002142E6 /* README.md */,
 				51C143452ED7CE53002142E6 /* WellnessHub */,
 				51C143442ED7CE53002142E6 /* Products */,
 			);
@@ -119,6 +125,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				51C1436A2ED7D589002142E6 /* README.md in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -2,94 +2,92 @@
 //  TrackerView.swift
 //  WellnessHub
 //
-//  Created by Bishal Paudel on 11/26/25.
+//  Created by Dhruv Rasikbhai Jivani on 11/26/25.
 //
 
 import SwiftUI
 
 struct TrackerView: View {
 
-    @State private var waterIntake: Double = 0
-    @State private var sleepHours: Int = 8
-    @State private var mood: String = "🙂"
-    @State private var exerciseDone: Bool = false
+    // Form input states
+    @State private var water: Double = 4
+    @State private var sleep: Int = 7
+    @State private var mood: String = "😊"
+    @State private var exercised: Bool = false
 
+    // Alert state
     @State private var showAlert = false
+    @State private var errorMessage = ""
 
-    let moodOptions = ["😡", "😐", "🙂", "😄", "🤩"]
+    // Mood options
+    let moods = ["😐", "😊", "😁", "😢", "😡"]
 
     var body: some View {
+
         NavigationView {
-            VStack(spacing: 20) {
+            Form {
 
-                Form {
+                // Water Slider
+                Section(header: Text("Water Intake (cups)")) {
+                    Slider(value: $water, in: 0...20, step: 1)
+                    Text("\(Int(water)) cups")
+                }
 
-                    // WATER
-                    Section(header: Text("Hydration")) {
-                        VStack(alignment: .leading) {
-                            Slider(value: $waterIntake, in: 0...20, step: 1)
-                            Text("Water: \(Int(waterIntake)) cups")
-                                .foregroundColor(.secondary)
-                        }
+                // Sleep Stepper
+                Section(header: Text("Sleep Hours")) {
+                    Stepper(value: $sleep, in: 0...12) {
+                        Text("\(sleep) hours")
                     }
+                }
 
-                    // SLEEP
-                    Section(header: Text("Sleep")) {
-                        Stepper("\(sleepHours) hours", value: $sleepHours, in: 0...12)
-                    }
-
-                    // MOOD
-                    Section(header: Text("Mood")) {
-                        Picker("Mood", selection: $mood) {
-                            ForEach(moodOptions, id: \.self) { face in
-                                Text(face).tag(face)
-                            }
-                        }
-                        .pickerStyle(SegmentedPickerStyle())
-                    }
-
-                    // EXERCISE
-                    Section(header: Text("Exercise")) {
-                        Toggle("Exercise Completed?", isOn: $exerciseDone)
-                    }
-
-                    // SUBMIT
-                    Section {
-                        Button(action: submitData) {
-                            HStack {
-                                Image(systemName: "paperplane.fill")
-                                Text("Submit Today’s Data")
-                                    .bold()
-                            }
-                            .foregroundColor(.blue)
+                // Mood Picker
+                Section(header: Text("Mood")) {
+                    Picker("Mood", selection: $mood) {
+                        ForEach(moods, id: \.self) { value in
+                            Text(value)
                         }
                     }
                 }
+
+                // Exercise Toggle
+                Section {
+                    Toggle("Did you exercise today?", isOn: $exercised)
+                }
+
+                // Submit button
+                Button(action: handleSubmit) {
+                    Text("Submit Day")
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .foregroundColor(.white)
+                        .background(Color.teal)
+                        .cornerRadius(10)
+                }
+                .padding(.vertical)
             }
             .navigationTitle("Daily Tracker")
             .alert(isPresented: $showAlert) {
-                Alert(title: Text("Success!"),
-                      message: Text("Your daily wellness input was saved."),
-                      dismissButton: .default(Text("Great!")))
+                Alert(title: Text("Wellness Saved ✨"),
+                      message: Text("Keep up the great habits!"),
+                      dismissButton: .default(Text("OK")))
             }
         }
     }
 
-    func submitData() {
+    // Submission logic with validation + reset
+    func handleSubmit() {
+        if sleep < 0 || sleep > 12 {
+            errorMessage = "Sleep must be between 0–12 hours."
+            return
+        }
+
+        // Show success
         showAlert = true
-        resetForm()
-    }
 
-    func resetForm() {
-        waterIntake = 0
-        sleepHours = 8
-        mood = "🙂"
-        exerciseDone = false
-    }
-}
-
-struct TrackerView_Previews: PreviewProvider {
-    static var previews: some View {
-        TrackerView()
+        // Reset fields
+        water = 0
+        sleep = 0
+        mood = "😊"
+        exercised = false
     }
 }

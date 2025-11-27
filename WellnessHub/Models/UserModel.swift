@@ -2,7 +2,7 @@
 //  UserModel.swift
 //  WellnessHub
 //
-//  Created by Bishal Paudel on 11/26/25.
+//  Created by Dhruv Rasikbhai Jivani on 11/26/25.
 //
 
 import Foundation
